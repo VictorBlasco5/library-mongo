@@ -1,5 +1,6 @@
 import Book from "../models/Book.js"
 
+//Crear libro
 export const createBook = async(req, res) => {
   try {
     const { title, description, author } = req.body
@@ -40,4 +41,27 @@ export const createBook = async(req, res) => {
       }
     )
   }
+}
+
+//Buscar libro
+export const getBooks = async (req, res) => {
+try{
+    const books = await Book.find().select('title').select('author');
+
+    res.status(200).json(
+        {
+          success: true,
+          message: "Book retrieved",
+          data: books
+        }
+      )
+    } catch (error) {
+      res.status(500).json(
+        {
+          success: false,
+          message: "Book cant retrieved",
+          error: error.message
+        }
+      )
+    }
 }
