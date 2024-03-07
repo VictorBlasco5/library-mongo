@@ -111,3 +111,32 @@ export const updateBookById = async(req, res) => {
     )
   }
 } 
+
+// Eliminar libro
+export const deleteBookById = async(req, res) => {
+    try {
+        const bookId = req.params.id
+
+        const deleteBook = await Book.findByIdAndDelete(
+            {
+                _id: bookId
+            }
+        )
+        
+        res.status(200).json(
+            {
+              success: true,
+              message: "Book deleted",
+              data: deleteBook
+            }
+          )
+    }  catch (error) {
+        res.status(500).json(
+          {
+            success: false,
+            message: "Book cant delete",
+            error: error.message
+          }
+        )
+      }
+}
