@@ -19,7 +19,13 @@ export const UserSchema = new Schema(
             type: String,
             enum: ["user", "admin", "super_admin"],
             default: "user"
-        }
+        },
+        favouriteBooks: [ //Relacion. Va dentro de un array porque hay muchos libros favoritos
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Book'
+            }
+        ]
     },
     {
         timestamps: true,

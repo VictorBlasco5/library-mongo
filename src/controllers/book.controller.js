@@ -90,7 +90,7 @@ export const updateBookById = async(req, res) => {
         title: title
       },
       {
-        new: true
+        new: true //se actualizaría igualmente pero es para que me muestre los datos que actualizamos, sino me mostraría los datos anteriores.
       }
     )
 
